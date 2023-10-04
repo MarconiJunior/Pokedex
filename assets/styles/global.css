@@ -4,14 +4,15 @@
 }
 
 body {
-    background-color: #f6f8fc;
+    background-color: #acb3da;
 }
 
 .content {
     width: 100vw;
     height: 100vh;
     padding: 1rem;
-    background-color: #FFF;
+    border: solid 6px #1f1f1f;
+    background-image: url('../img/poke_background.png');
 }
 
 
@@ -22,5 +23,29 @@ body {
         margin: 1rem auto;
         border-radius: 1rem;
     }
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.nav_bar{
+    width: 100%;
+    height:70px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0px 50px 0px;
+}
+
+.pokemon_logo_name > h1{
+    text-shadow: 3px 4px black;
+    font-size: 35px;
+    font-family: 'Pokemon Solid', sans-serif;
+    -webkit-text-stroke: 2px #3466af;
+    color: #ffc805;
 }
 

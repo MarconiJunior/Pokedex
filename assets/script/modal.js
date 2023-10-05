@@ -11,7 +11,7 @@ function openModal(pokemon) {
         <div class="modal-column">
             <h1 class="pokemon-modal-title">${capitalizeFirstLetter(pokemon.name)}</h1>
             <p>Abilities: ${capitalizeFirstLetter(pokemon.abilities.join(', '))}</p>
-            <p>Weight: ${pokemon.weight} Kg</p>
+            <p>Weight: ${pokemon.weight / 10} Kg</p>
             <ol class="modal-types">
                         ${pokemon.types.map((type) => `<li class="modal-type ${type}">${capitalizeFirstLetter(type)}</li>`).join('')}
                     </ol>

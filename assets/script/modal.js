@@ -60,6 +60,17 @@ pokemonList.addEventListener('click', async (event) => {
 
 
 searchButton.addEventListener('click', async () => {
+    await searchPokemon()
+})
+
+searchInput.addEventListener('keydown', async (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        await searchPokemon()
+    }
+})
+
+async function searchPokemon() {
     const searchValue = searchInput.value
     const regex = /^[A-Za-z]+$/;
     if (regex.test(searchValue)) {
@@ -70,10 +81,12 @@ searchButton.addEventListener('click', async () => {
                 openModal(pokemon);
             })
             .catch((error) => {
-                alert(error)
+                console.error('Erro ao buscar e exibir o Pokémon:', error);
             })
+        searchInput.value = "";
+        searchInput.placeholder = "Digite o Pokémon";
     } else {
         alert('Dígite apenas letras')
     }
-})
+}
 

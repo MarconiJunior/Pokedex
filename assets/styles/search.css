@@ -1,0 +1,28 @@
+.search_box {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    text-align: end;
+}
+
+#search_input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #000;
+    forced-color-adjust: none;
+    margin-right: 1rem;
+}
+
+#search_input:focus {
+    outline: none;
+}
+
+#search_icon {
+    padding: 3px;
+}
+
+#search_icon:hover {
+    border-radius:50%;
+    background-color: #ffffff62;
+    cursor: pointer;
+}

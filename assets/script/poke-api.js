@@ -27,8 +27,7 @@ function convertPokeApiToClickedPokemon(clickedPokemon) {
 
     pokemon.types = types
     pokemon.type = type
-
-    pokemon.photo = clickedPokemon.sprites.other.dream_world.front_default
+    pokemon.photo = clickedPokemon.sprites.versions['generation-v']['black-white'].animated.front_default
 
     pokemon.abilities = clickedPokemon.abilities.map((abilitySlot) => abilitySlot.ability.name)
     pokemon.weight = clickedPokemon.weight
@@ -58,3 +57,23 @@ pokeApi.getClickedPokemons = async (pokemonNumber) => {
     const clickedPokemon = await response.json()
     return convertPokeApiToClickedPokemon(clickedPokemon)
 }
+
+pokeApi.getPokemonByName = async (pokemonName) => {
+    try {
+        const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}/`;
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error('Não foi possível obter os dados do Pokémon.');
+        }
+
+        const pokemon = await response.json();
+        return pokemon.id;
+    } catch (error) {
+        console.error('Erro ao buscar o Pokémon:', error);
+
+        alert('Erro ao buscar o Pokémon: ' + error.message);
+
+        throw error;
+    }
+};

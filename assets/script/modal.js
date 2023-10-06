@@ -1,6 +1,8 @@
 const pokemonModal = document.getElementById('pokemonModal');
 const modalBody = document.getElementById('modalBody');
 const modal = document.querySelector('.modal-content')
+const searchInput = document.getElementById('search_input')
+const searchButton = document.getElementById('search_icon')
 
 function openModal(pokemon) {
     modal.classList.remove(`${pokemon.type}`)
@@ -46,13 +48,32 @@ function capitalizeFirstLetter(string) {
     return words.join(' ');
 }
 
-pokemonList.addEventListener('click', (event) => {
+pokemonList.addEventListener('click', async (event) => {
     const pokemonNumber = event.target.closest('.pokemon').querySelector('.number').textContent.replace('#', '');
     const clickedPokemon = event.target.closest('.pokemon');
     if (clickedPokemon) {
-        pokeApi.getClickedPokemons(pokemonNumber).then((pokemon) => {
+        await pokeApi.getClickedPokemons(pokemonNumber).then((pokemon) => {
             openModal(pokemon);
         })
     }
 });
+
+
+searchButton.addEventListener('click', async () => {
+    const searchValue = searchInput.value
+    const regex = /^[A-Za-z]+$/;
+    if (regex.test(searchValue)) {
+        const pokemonNumber = await pokeApi.getPokemonByName(searchInput.value.trim())
+        console.log(pokemonNumber)
+        pokeApi.getClickedPokemons(pokemonNumber)
+            .then((pokemon) => {
+                openModal(pokemon);
+            })
+            .catch((error) => {
+                alert(error)
+            })
+    } else {
+        alert('Dígite apenas letras')
+    }
+})
 
